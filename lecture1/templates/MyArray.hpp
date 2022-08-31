@@ -1,72 +1,68 @@
 #include <cstddef>
+#include <iostream>
 
 #ifndef MYARRAY_HPP_
 #define MYARRAY_HPP_
 
-template<typename T>
+template<typename T, std::size_t capacity = 5>
 class MyArray {
 public:
-  MyArray() {
-    array_ = {};
-    size_ = 0;
-  };
+  MyArray() {};
+
   ~MyArray() {};
+
   MyArray(MyArray const& ref)
     : array_(ref.array_), size_(ref.size_) {};
-  MyArray<T>& operator=(MyArray<T> const& ref) {
+
+  MyArray<T, capacity>& operator=(MyArray<T, capacity> const& ref) {
     this->array_ = ref.array_;
     this->size_ = ref.size_;
 
     return *this;
   };
+
   void fill(const T& obj) {
-    T new_array[size() + 1];
-
-    for (int i = 0; i < size_; i++) {
-      new_array[i] = array_[i];
+    for (std::size_t i = 0; i < capacity; i++) {
+      array_[i] = obj;
     }
-    new_array[size_] = obj;
-
-    array_ = new_array;
+    size_ = capacity;
   };
+
   T* begin() const {
     if (size_ > 0)
       return &array_[0];
 
     return nullptr;
   };
+
   T* end() const {
     if (size_ > 0)
       return &array_[size_ - 1];
 
     return nullptr;
   };
-  T& operator[](int i) const {
-    if (i < size_)
-      return array_[i];
 
-    return nullptr;
+  T& operator[](int i) {
+      return array_[i];
   };
+
   std::size_t size() const {
     return size_;
   };
 
 private:
-  std::size_t size_;
-  T* array_;
+  std::size_t size_ = 0;
+  T array_[capacity];
 };
 
 template<typename T>
 T* myfind(T* first, T* last, const T& v) {
-  T* cursor = first;
-  while (cursor != last) {
-    if (v == cursor)
-      break;
-    else
-      cursor++;
+  for (auto iter = first; iter != last; iter++) {
+    if (*iter == v)
+      return iter;
   }
 
-  return cursor;
+  return nullptr;
 }
 
 #endif
