@@ -10,12 +10,12 @@ class SharedPtr {
   size_t count_;
 
   public:
-  SharedPtr<T>(T* t = 0) : ptr_(t), count_(1) {}
-  SharedPtr<T>(const SharedPtr<T>& ref)
+  SharedPtr(T* t = 0) : ptr_(t), count_(1) {}
+  SharedPtr(const SharedPtr<T>& ref)
     : SharedPtr<T>(ref.ptr_) {
-    count_ = ref.count() + 1;
+    count_ = ref.count_ + 1;
   }
-  SharedPtr<T>& operator=(const SharedPtr<T>& ref) {
+  SharedPtr& operator=(const SharedPtr<T>& ref) {
     if (this != &ref) {
       this->ptr_ = ref.ptr_;
       this->count_ = ref.count_ + 1;
@@ -23,7 +23,7 @@ class SharedPtr {
 
     return *this;
   } 
-  ~SharedPtr<T>() {
+  ~SharedPtr() {
     count_--;
 
     if (count_ == 0 && ptr_)
