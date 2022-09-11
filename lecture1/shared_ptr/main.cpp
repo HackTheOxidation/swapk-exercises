@@ -5,6 +5,8 @@
 int main(void) {
   // Exercise 1
   {
+    using namespace sharedptr; // Exercise 4
+
     int* zero = new int(0);
     int* one = new int(1);
 
@@ -23,6 +25,8 @@ int main(void) {
 
   // Exercise 2
   {
+    using namespace sharedptr; // Exercise 4
+
     SharedPtr<std::string> sp(new std::string("Hello world"));
 
     if (sp)
@@ -30,6 +34,8 @@ int main(void) {
   }
 
   {
+    using namespace sharedptr; // Exercise 4
+
     SharedPtr<std::string> sp(new std::string("Hello"));
     SharedPtr<std::string> sp2(new std::string("world"));
 
@@ -41,8 +47,12 @@ int main(void) {
   }
 
   // Exercise 3
+  {
+    using namespace sharedptr; // Exercise 4
+    Deleter<std::string> deleter; 
+    SharedPtr<std::string> sp(new std::string("Hello"), deleter);
 
-  
+  }
   
   return 0;
 }

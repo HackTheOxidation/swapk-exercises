@@ -55,6 +55,8 @@ private:
   T array_[capacity];
 };
 
+
+// Exercise 1.2
 template<typename T>
 T* myfind(T* first, T* last, const T& v) {
   for (auto iter = first; iter != last; iter++) {
