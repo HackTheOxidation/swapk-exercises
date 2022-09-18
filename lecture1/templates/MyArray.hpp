@@ -1,5 +1,6 @@
 #include <cstddef>
 #include <iostream>
+#include <typeinfo>
 
 #ifndef MYARRAY_HPP_
 #define MYARRAY_HPP_
@@ -28,14 +29,14 @@ public:
     size_ = capacity;
   };
 
-  T* begin() const {
+  T* begin() {
     if (size_ > 0)
       return &array_[0];
 
     return nullptr;
   };
 
-  T* end() const {
+  T* end() {
     if (size_ > 0)
       return &array_[size_ - 1];
 
@@ -59,12 +60,25 @@ private:
 // Exercise 1.2
 template<typename T>
 T* myfind(T* first, T* last, const T& v) {
-  for (auto iter = first; iter != last; iter++) {
+  for (auto iter = first; iter <= last; iter++) {
     if (*iter == v)
       return iter;
   }
 
-  return nullptr;
+  return last;
+}
+
+// Exercise 1.3
+template<typename T, typename V>
+T* myfind2(T* first, T* last, const V& v) {
+  const T val = static_cast<T>(v);
+  for (auto iter = first; iter <= last; iter++) {
+    if (*iter == val) {
+      return iter;
+    }
+  }
+
+  return last;
 }
 
 #endif
