@@ -3,6 +3,7 @@
 /* Author: sha                           */
 /*****************************************/
 
+#include <cassert>
 #include <fstream>
 #include <iostream>
 #include <iterator>
@@ -13,6 +14,7 @@
 #include <ostream>
 #include <vector>
 #include <string>
+#include <bits/stdc++.h>
 
 
 #define PRODUCT_DB_FILE		"product.db"
@@ -174,6 +176,13 @@ void addDiscountUsingForEach(ProductList& pl)
  */
 void addDiscountUsingTransform(ProductList& pl)
 {
+  double discount;
+  std::cin >> discount;
+  discount = (100.0 - std::clamp(discount, 10.0, 90.0)) / 100.0;
+  std::transform(pl.begin(), pl.end(), pl.begin(), [discount](Product p){
+    p.setPrice(p.price() * discount);
+    return p;
+  });
 }
 
 
