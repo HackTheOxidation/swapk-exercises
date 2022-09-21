@@ -176,13 +176,23 @@ void addDiscountUsingForEach(ProductList& pl)
  */
 void addDiscountUsingTransform(ProductList& pl)
 {
+  std::cout << "##################################################" << std::endl;
+  std::cout << "Applying discount with std::for_each()..." << std::endl;
+  std::cout << "----------------------------" << std::endl;
+
   double discount;
+  std::ostream_iterator<Product> iter(std::cout, "\n");
+
+  std::cout << "Enter discount (10-90%): ";
   std::cin >> discount;
   discount = (100.0 - std::clamp(discount, 10.0, 90.0)) / 100.0;
-  std::transform(pl.begin(), pl.end(), pl.begin(), [discount](Product p){
+
+  std::transform(pl.begin(), pl.end(), iter, [discount](Product p){
     p.setPrice(p.price() * discount);
     return p;
   });
+
+  std::cout << "##################################################" << std::endl;
 }
 
 
