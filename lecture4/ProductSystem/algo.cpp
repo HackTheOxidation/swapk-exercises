@@ -155,6 +155,17 @@ void printPoorlySellingProducts(const ProductList& pl)
  */
 void addDiscountUsingForEach(ProductList& pl)
 {
+  std::cout << "##################################################" << std::endl;
+  std::cout << "Applying 10% discount with std::for_each()..." << std::endl;
+  std::cout << "----------------------------" << std::endl;
+  const float discount_factor = 0.9;
+
+  std::for_each(pl.begin(), pl.end(), [discount_factor](Product p) {
+    p.setPrice(p.price() * discount_factor);
+    std::cout << p << std::endl;
+  });
+
+  std::cout << "##################################################" << std::endl;
 }
 
 
