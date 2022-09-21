@@ -182,6 +182,17 @@ void addDiscountUsingTransform(ProductList& pl)
  */
 void calcTotalSoldProducts(ProductList& pl)
 {
+  std::cout << "##################################################" << std::endl;
+  std::cout << "Calculating total number of products sold..." << std::endl;
+
+  std::cout << "----------------------------" << std::endl;
+  int total_sold = std::accumulate(pl.begin(), pl.end(), 0, [](int acc, Product p) {
+    return acc + p.sold();
+  });
+
+  std::cout << "Total sold: " << total_sold << std::endl;
+
+  std::cout << "##################################################" << std::endl;
 }
 
 
