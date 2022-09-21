@@ -121,7 +121,7 @@ void addItem(ProductList& pl)
 void productDBWrite(const ProductList& pl, const std::string& fileName)
 {
   std::cout << "##################################################" << std::endl;
-  std::cout << "Printing out all products..." << std::endl;
+  std::cout << "Writing all products to database..." << std::endl;
   std::cout << "----------------------------" << std::endl;
 
   std::ofstream pFile( fileName.c_str() );
@@ -137,6 +137,16 @@ void productDBWrite(const ProductList& pl, const std::string& fileName)
  */
 void printPoorlySellingProducts(const ProductList& pl)
 {
+  std::cout << "##################################################" << std::endl;
+  std::cout << "Printing out poorly selling products..." << std::endl;
+  std::cout << "----------------------------" << std::endl;
+
+  std::ostream_iterator<Product> iter(std::cout, "\n");
+  std::remove_copy_if(pl.begin(), pl.end(), iter, [](Product p) {
+    return p.sold() >= 10;
+  });
+
+  std::cout << "##################################################" << std::endl;
 }
 
 
