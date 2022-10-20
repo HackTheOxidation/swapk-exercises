@@ -7,9 +7,8 @@ Acc accumulate(Acc acc, Args ...args) {
   return acc + accumulate(args...);
 }
 
-template<typename Acc>
-Acc accumulate(Acc acc) {
-  return acc;
+double accumulate() {
+  return 0;
 }
 
 #endif
