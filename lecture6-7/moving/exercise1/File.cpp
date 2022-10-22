@@ -1,10 +1,8 @@
 #include "File.hpp"
-#include <string>
 #include <iostream>
 
 int main(void) {
-  std::string fileName = "test.txt";
-  File f(fileName);
+  File f("test.txt");
 
   File f2(std::move(f));
 

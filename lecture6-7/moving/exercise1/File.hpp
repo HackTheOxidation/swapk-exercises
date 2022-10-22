@@ -4,7 +4,7 @@
 
 class File {
 public:
-  File(std::string fileName) {
+  File(const std::string& fileName) {
     fopen(fileName.c_str(), "w");
   }
 
