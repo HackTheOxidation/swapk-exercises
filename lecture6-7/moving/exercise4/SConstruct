@@ -1,0 +1,7 @@
+env = Environment()
+env.Append(CPPPATH=['/opt/local/include', '/usr/include'])
+env['CXXFLAGS'] = '-std=c++11'
+
+env.Program('exercise4_1', ["exercise4_1.cpp"])
+
+env.Program('exercise4_2', ["exercise4_2.cpp"])

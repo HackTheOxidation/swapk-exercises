@@ -1,0 +1,5 @@
+env = Environment()
+env.Append(CPPPATH=['/opt/local/include', '/usr/include'])
+env['CXXFLAGS'] = '-std=c++20'
+
+env.Program('compile_time_if', ["compile_time_if.cpp"])
