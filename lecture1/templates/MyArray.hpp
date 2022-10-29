@@ -81,5 +81,16 @@ T* myfind2(T* first, T* last, const V& v) {
   return last;
 }
 
+template<typename U>
+typename U::value_type myAccumulation(const U& u) {
+  typename U::value_type m = typename U::value_type();
+
+  for (auto first : u) {
+    m += first;
+  }
+
+  return m;
+}
+
 #endif
 
